@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Tiveria.Home.Homie.Devices
 {
-    public class HomieDeviceHost : IDeviceHost
+    public class HomieDeviceHost : IDeviceHost, IConnectingFailedHandler
     {
         private readonly Device _device;
         private readonly HomieHostConfiguration _config;
@@ -23,6 +23,7 @@ namespace Tiveria.Home.Homie.Devices
             _config = config;
             Logger = logger;
             _mqttClient = new MqttFactory().CreateManagedMqttClient();
+            _mqttClient.ConnectingFailedHandler = this;
             _device.Host = this;
         }
 
@@ -125,6 +126,12 @@ namespace Tiveria.Home.Homie.Devices
             await _mqttClient.PublishAsync(topic, payload, MQTTnet.Protocol.MqttQualityOfServiceLevel.AtLeastOnce, retained);
         }
 
+        public Task HandleConnectingFailedAsync(ManagedProcessFailedEventArgs eventArgs)
+        {
+            Logger.XLogConnectingFailed(eventArgs.Exception);
+            return Task.CompletedTask;
+        }
     }
+
 }
 
