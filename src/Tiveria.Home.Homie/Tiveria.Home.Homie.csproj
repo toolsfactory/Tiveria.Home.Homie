@@ -1,7 +1,25 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+	  <TargetFrameworks>net6.0</TargetFrameworks>
+	  <ImplicitUsings>enable</ImplicitUsings>
+	  <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <PropertyGroup>
+	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	  <Authors>Michael Geissler</Authors>
+	  <Company>Tiveria Embedded Solutions GmbH</Company>
+	  <Description>A small library for the Homie 4.0 home IoT standard.</Description>
+	  <Copyright>Michael Geissler</Copyright>
+	  <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+	  <PackageProjectUrl>https://github.com/toolsfactory/Tiveria.Home.Homie</PackageProjectUrl>
+	  <RepositoryUrl>https://github.com/toolsfactory/Tiveria.Home.Homie</RepositoryUrl>
+	  <RepositoryType>GIT</RepositoryType>
+	  <LangVersion>latest</LangVersion>
+	  <PackageReadmeFile>README.md</PackageReadmeFile>
+	  <PackageLicenseExpression>LGPL-3.0-only</PackageLicenseExpression>
+	  <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -10,16 +28,11 @@
     <RunAnalyzersDuringLiveAnalysis>true</RunAnalyzersDuringLiveAnalysis>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
-    <PackageReference Include="MQTTnet" Version="3.0.13" />
-    <PackageReference Include="MQTTnet.Extensions.ManagedClient" Version="3.0.13" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="Common\" />
+  <ItemGroup Condition="">
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
+    <PackageReference Include="MQTTnet" Version="3.1.2" />
+    <PackageReference Include="MQTTnet.Extensions.ManagedClient" Version="3.1.2" />
   </ItemGroup>
   
 </Project>
